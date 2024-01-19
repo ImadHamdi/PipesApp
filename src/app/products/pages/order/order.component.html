@@ -1,0 +1,49 @@
+<p-panel header="Pipes Pesonalizados" class="p-1">
+  <p>
+    Pipes personalizados - Creados por {{'nosotros' | toggleCase:isUpperCase }}
+  </p>
+  <p-button label="ToggleCase" icon="pi pi-search" (onClick)="toggleUpperCase()"></p-button>
+</p-panel>
+
+<p-toolbar>
+  <div class="p-toolbar-group-start">
+      <button pButton label="Por nombre" icon="pi pi-sort" class="mr-2"></button>
+      <button pButton label="Por valor" icon="pi pi-sort" class="mr-2"></button>
+      <button pButton label="Por color" icon="pi pi-sort" class="mr-2"></button>
+  </div>
+  <div class="p-toolbar-group-center">
+      <!-- <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input type="text" pInputText placeholder="Search" />
+      </span> -->
+  </div>
+  <div class="p-toolbar-group-end">
+    <p-splitButton label="Save" icon="pi pi-check" [model]="items"></p-splitButton>
+  </div>
+</p-toolbar>
+
+
+<div class="grid">
+  <div class="col mt-2">
+    <p-panel header="HÉROES">
+      <p-treeTable [value]="treeNodeHeroes" [scrollable]="true" [tableStyle]="{'min-width':'50rem'}">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nombre</th>
+                <th>Vuela</th>
+                <th>Color</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-hero>
+            <tr>
+              <td>{{hero.node.data.name}}</td>
+              <!-- <td>{{hero.node.data.canFly.toString() | i18nSelect:canFlyMap}}</td> -->
+              <!-- <td>{{hero.node.data.canFly ? 'Sí' : 'No'}}</td> -->
+              <td>{{hero.node.data.canFly | canFly}}</td>
+              <td>{{hero.node.data.color}}</td>
+            </tr>
+        </ng-template>
+    </p-treeTable>
+    </p-panel>
+  </div>
+</div>
