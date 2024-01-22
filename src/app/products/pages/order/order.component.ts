@@ -11,6 +11,8 @@ export class OrderComponent implements OnInit {
 
   public items: MenuItem[] = [];
   public isUpperCase: boolean = false;
+  public orderBy?: keyof Hero;
+
   public heroes: Hero[] = [
     {
       name: 'Superman',
@@ -50,6 +52,10 @@ export class OrderComponent implements OnInit {
 
   toggleUpperCase(): void {
     this.isUpperCase = !this.isUpperCase;
+  }
+
+  changeOrderBy( keyOfHero: keyof Hero): void{
+    this.orderBy = keyOfHero;
   }
 
   ngOnInit() {
